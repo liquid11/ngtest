@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head ng-app="storeApp">
     <meta charset="UTF-8">
-    <title></title>
+    <title>jewel store</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+<div ng-controller="StoreController as store">
+    <h1>{{store.product.name}} </h1>
+    <h2>${{store.product.price}}</h2>
+    <p>{{store.product.description}}</p>
+    <button ng-show="store.product.canPurchase">Add to Cart</button>
+</div>
+<script src="app/app.js"></script>
 </body>
 </html>
