@@ -6,12 +6,36 @@
 
     var storeApp = angular.module('storeApp', []);
 
-    var gem = {
-        name:'Azurite' ,
-        price:'2.49' ,
-        description:'2,49' ,
-        canPurchase:false
-    }
-    storeApp.controller('StoreController',function() {
+
+
+       storeApp.controller('StoreController',function() {
+
+        this.products = gems;
     });
+
+    var gems = [
+        {
+        name:'Azurite' ,
+        price:'22.49' ,
+        description:'2,49' ,
+        soldOut:false,
+        canPurchase:false
+
+        },
+        {
+            name:'ruby' ,
+            price:'5.49' ,
+            description:'.....' ,
+            soldOut:false,
+            canPurchase:true
+        },
+        {
+            name:'zerkon' ,
+            price:'35' ,
+            description:'....' ,
+            soldOut:true,
+            canPurchase:false
+        }
+     ]
+
 })();
