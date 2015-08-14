@@ -3,23 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <title>jewel store</title>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.min.js"></script>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
+    <script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="app/style/style.css">
 </head>
 <body  ng-app="storeApp">
 <div class="container">
-<div ng-controller="StoreController as store">
-<div ng-repeat="product in store.products">
-<div ng-hide="store.product.soldOut" >
-    <h1>{{store.product.name}} </h1>
-    <h2>${{store.product.price}}</h2>
-    <p>{{store.product.description}}</p>
-    <button ng-show="store.product.canPurchase">Add to Cart</button>
-</div>
-</div>
+
+    <div ng-controller="StoreController as store" class="ng-cloak">
+        <div   ng-repeat="product in store.products | orderBy:'-price'">
+            <div ng-hide="product.soldOut" class=" panel panel-primary">
+                <div class="panel-heading ">
+                    <h3 class="panel-title">{{product.name}}</h3>
+                </div>
+                <div class="panel-body">
+                    <h2>{{product.price |currency}}</h2>
+                    <button ng-show="store.product.canPurchase">Add to Cart</button>
+                </div>
+                <section ng-init="tab=1" ng-controller="PanelController as panel ">
+                    <ul class="nav nav-pills">
+                        <li ng-class="{active: panel.isSelected(1) }">
+                            <a ng-click="panel.selectTab(1)">Description</a></li>
+                        <li ng-class="{active: panel.isSelected(2) }">
+                            <a ng-click="panel.selectTab(2)">Specifications</a></li>
+                        <li ng-class="{active: panel.isSelected(3) }">
+                            <a ng-click="panel.selectTab(3)">Reviews</a></li>
+                    </ul>
+                    <div class="panel appear-animation" ng-show="panel.isSelected(1)">
+                        <h4>Description</h4>
+                        <p>{{product.description}}</p>
+                    </div>
+                    <div class="panel appear-animation" ng-show="panel.isSelected(2)">
+                        <h4>Specifications</h4>
+                        <blockquote>not yet</blockquote>
+                    </div>
+                    <div class="panel appear-animation" ng-show="panel.isSelected(3)">
+                        <h4>Reviews</h4>
+                        <blockquote ng-repeat="review in product.reviews">
+                            <b>{{stars}}</b>
+                            <p>{{review.body}}</p>
+                            <cite>{{review.author}}</cite>
+                        </blockquote>
+                        <form action="" name="reviewForm"
+                              ng-controller="ReviewController as reviewCtrl">
+                            <blockquote>
+                                <b>{{reviewCtrl.review.stars}}</b>
+                                <p>{{reviewCtrl.review.body}}</p>
+                                <cite>{{reviewCtrl.review.author}}</cite>
+                            </blockquote>
+                            <select ng-model="reviewCtrl.review.stars">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <textarea ng-model="reviewCtrl.review.body"></textarea>
+                            <label >by:</label>
+                            <input type="email" ng-model="reviewCtrl.review.author"/>
+                            <!--TODO:complate the submit process-->
+                            <input type="submit" ng-submit="reviewCtrl.addReview(Product)"  />
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </div>
     </div>
 </div>
 <script src="app/app.js"></script>
