@@ -21,9 +21,11 @@ storeApp.controller('PanelController',function() {
 });
 
 storeApp.controller('ReviewController',function() {
-
-    //TODO:complete the submit process
     this.review = [];
+    this.addReview = function (product){
+        product.reviews.push(this.review);
+        this.review = [];
+    }
 });
 
 
