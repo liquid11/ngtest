@@ -34,7 +34,7 @@ var gems = [
         name:'Azurite' ,
         price:'22.49' ,
         description:'2,49' ,
-        canPurchase:false,
+        canPurchase:true,
         soldOut:true ,
         reviews:[
             {
@@ -76,7 +76,7 @@ var gems = [
         name:'zerkon' ,
         price:'35' ,
         description:'....' ,
-        canPurchase:false ,
+        canPurchase:true ,
         soldOut:false,
         reviews:[
             {
