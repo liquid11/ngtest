@@ -1,9 +1,7 @@
 
 <!--the include file for the product title listing-->
-<div class="panel-heading ">
-    <h3 class="panel-title">{{product.name}}</h3>
-</div>
-<div class="panel-body">
+<section>
+    <h3 class="list-group-item-heading">{{product.name}}</h3>
     <h2>{{product.price |currency}}</h2>
-    <button ng-show="store.product.canPurchase">Add to Cart</button>
-</div>
+    <button ng-show="product.canPurchase" class="btn btn-default">Add to Cart</button>
+</section>

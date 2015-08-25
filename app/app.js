@@ -8,17 +8,17 @@ storeApp.controller('StoreController',function() {
     this.products = gems;
 });
 
-storeApp.controller('PanelController',function() {
-    /*   set initialization values   */
-    this.tab =1;
-    /* tab selection function */
-    this.selectTab= function(setTab){
-        this.tab = setTab;
-    };
-    this.isSelected = function(chk){
-        return this.tab === chk;
-    };
-});
+//storeApp.controller('PanelController',function() {
+ //   /*   set initialization values   */
+ //   this.tab =1;
+ //   /* tab selection function */
+  //  this.selectTab= function(setTab){
+   //     this.tab = setTab;
+ //   };
+  //  this.isSelected = function(chk){
+   //     return this.tab === chk;
+   // };
+//});
 
 storeApp.controller('ReviewController',function() {
     this.review = [];
@@ -27,8 +27,38 @@ storeApp.controller('ReviewController',function() {
         this.review = [];
     }
 });
+//the dash in html translates to camelCasing in javascript
+/*the directive*/
+storeApp.directive('productTitle',function(){
+    return {
+        restrict:'E', // type of directive. here we are declaring html element
+        templateUrl:'product-title.html' // the url of the template we want to show
+    };
+});
+
+storeApp.directive('product-panel',function(){
+    return {
+        restrict:'E',
+        templateUrl:'product-panel.html',
+        controller:function(){
+            /*   set initialization values   */
+            this.tab =1;
+            /* tab selection function */
+            this.selectTab= function(setTab){
+                this.tab = setTab;
+            };
+            this.isSelected = function(chk){
+                return this.tab === chk;
+            };
+        },
+        controllerAs:'panel'
+    };
+});
 
 
+
+
+/* gems json object */
 var gems = [
     {
         name:'Azurite' ,
