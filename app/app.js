@@ -36,7 +36,7 @@ storeApp.directive('productTitle',function(){
     };
 });
 
-storeApp.directive('product-panel',function(){
+storeApp.directive('productPanels',function(){
     return {
         restrict:'E',
         templateUrl:'product-panel.html',
