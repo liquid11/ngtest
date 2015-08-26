@@ -22,27 +22,6 @@
             <p>{{review.body}}</p>
             <cite>{{review.author}}</cite>
         </blockquote>
-        <form name="reviewForm"
-              ng-controller="ReviewController as reviewCtrl"
-              ng-submit="reviewCtrl.addReview(product)" novalidate>
-            <blockquote>
-                <b>{{reviewCtrl.review.stars}}</b>
-                <p>{{reviewCtrl.review.body}}</p>
-                <cite>{{reviewCtrl.review.author}}</cite>
-            </blockquote>
-            <select ng-model="reviewCtrl.review.stars" required>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
-            <textarea ng-model="reviewCtrl.review.body" required></textarea>
-            <label >by:</label>
-            {{reviewForm.$valid}}
-            <input type="email" ng-model="reviewCtrl.review.author" required/>
-
-            <input type="submit"  />
-        </form>
+        <product-reviews></product-reviews>
     </div>
 </section>
